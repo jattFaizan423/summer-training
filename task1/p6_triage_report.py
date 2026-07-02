@@ -22,9 +22,10 @@ def label_risk(risk_score: int) -> str:
     """Return low, medium, or high based on risk score."""
     if risk_score < 50:
         return "low"
-    if risk_score < 80:
+    elif risk_score < 80:
         return "medium"
-    return "high"
+    else:
+        return "high"
 
 
 def add_risk_labels(patient_records: list[dict]) -> list[dict]:

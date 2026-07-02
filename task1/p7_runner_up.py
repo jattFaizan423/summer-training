@@ -1,21 +1,15 @@
-"""
-Task 1 — Problem 7 (Easy): Find the Runner-Up Score
-
-HackerRank: https://www.hackerrank.com/challenges/find-second-maximum-number-in-a-list/problem
-
-Adapted as a function so it can be tested automatically.
-"""
+"""Task 1 — Problem 7 (Easy): Find the Runner-Up Score"""
 
 sample_scores = [2, 3, 6, 6, 5]
 
 
 def find_runner_up(scores: list[int]) -> int:
-    """Return the runner-up score: the second highest *distinct* value.
+    """Return the runner-up score: the second highest distinct value."""
+    unique_scores = sorted(set(scores), reverse=True)
 
-    Example: [2, 3, 6, 6, 5] -> 5 (6 is the highest, 5 is the runner-up).
-    """
-    unique_scores = list(set(scores))
-    unique_scores.sort(reverse=True)
+    if len(unique_scores) < 2:
+        raise ValueError("Need at least two distinct scores")
+
     return unique_scores[1]
 
 

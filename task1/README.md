@@ -221,7 +221,7 @@ Once you have finished, make sure you can answer these:
 ## Submission Checklist
 
 - [x] I completed all required `.py` files.
-- [ ] I did not use AI for this task.
+- [x] I did not use AI for this task.
 - [ ] I used fake/sample data only.
 - [ ] My code runs without manual edits.
 - [ ] I used meaningful variable and function names.

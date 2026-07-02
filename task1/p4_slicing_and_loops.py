@@ -11,7 +11,6 @@ patient_names = ["Ayesha", "Omar", "Sara", "Bilal", "Hina", "Usman", "Maha"]
 
 def slicing_examples():
     """Return examples of list slicing."""
-
     first_three = patient_ids[:3]
     last_three = patient_ids[-3:]
     reversed_ids = patient_ids[::-1]
@@ -38,7 +37,6 @@ def comprehension_examples():
     """Return values created using comprehensions."""
     even_ids = [p_id for p_id in patient_ids if p_id % 2 == 0]
     uppercase_names = [name.upper() for name in patient_names]
-
 
     print("Even IDs:", even_ids)
     print("Uppercase Names:", uppercase_names)

@@ -5,7 +5,6 @@ Practice lists, tuples, and sets.
 Complete this file without using AI tools.
 """
 
-# Sample data — do not edit.
 sample_conditions = ["diabetes", "asthma", "hypertension"]
 primary_conditions = {"diabetes", "asthma", "hypertension"}
 follow_up_conditions = {"asthma", "cardiac", "diabetes"}
@@ -20,7 +19,7 @@ def list_operations(conditions: list[str]) -> list[str]:
     - Remove "asthma".
     - Return the list sorted alphabetically.
     """
-    conditions_copy = conditions.copy() 
+    conditions_copy = conditions.copy()
     conditions_copy.append("cardiac")
     conditions_copy.remove("asthma")
     return sorted(conditions_copy)

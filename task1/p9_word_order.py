@@ -8,10 +8,9 @@ Adapted as a function so it can be tested automatically.
 
 sample_words = ["bcdef", "abcdefg", "bcde", "bcdef"]
 
-sample_words = ["bcdef", "abcdefg", "bcde", "bcdef"]
-
 
 def word_order(words: list[str]) -> tuple[int, list[int]]:
+    """Count occurrences of words and return unique count along with frequencies."""
     word_count = {}
 
     for word in words:

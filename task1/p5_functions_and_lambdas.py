@@ -21,12 +21,11 @@ def classify_bmi(bmi: float) -> str:
     """Return BMI category."""
     if bmi < 18.5:
         return "Underweight"
-    elif bmi < 25.0:
+    if bmi < 25.0:
         return "Normal"
-    elif bmi < 30.0:
+    if bmi < 30.0:
         return "Overweight"
-    else:
-        return "Obese"
+    return "Obese"
 
 
 def format_name(name: str) -> str:

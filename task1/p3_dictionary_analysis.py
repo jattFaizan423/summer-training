@@ -34,13 +34,13 @@ def update_patient_condition(patient_id, new_condition):
     if patient_id in patients:
         patients[patient_id]["condition"] = new_condition
         return True
-
     return False
 
 
 def build_patient_summary():
     """Build and return a summary dictionary."""
     total_patients = len(patients)
+
     if total_patients == 0:
         return {"total_patients": 0, "average_age": 0}
 
@@ -54,15 +54,12 @@ def build_patient_summary():
 
 
 if __name__ == "__main__":
-
     city = get_patient_city(1)
     print(f"Patient 1 City: {city}")
 
-    # 2. Test update_patient_condition
     print("\nUpdating Patient 2 condition")
     success = update_patient_condition(2, "flu")
     print(f"Updated Data for Patient 2: {patients[2]}")
 
-    
     print("\n--- Summary Report ---")
     print(build_patient_summary())

@@ -22,10 +22,9 @@ def label_risk(risk_score: int) -> str:
     """Return low, medium, or high based on risk score."""
     if risk_score < 50:
         return "low"
-    elif risk_score < 80:
+    if risk_score < 80:
         return "medium"
-    else:
-        return "high"
+    return "high"
 
 
 def add_risk_labels(patient_records: list[dict]) -> list[dict]:
@@ -33,7 +32,7 @@ def add_risk_labels(patient_records: list[dict]) -> list[dict]:
     labeled = []
 
     for p in patient_records:
-        new_patient = p.copy()  # shallow copy is enough here
+        new_patient = p.copy()
         new_patient["risk_label"] = label_risk(p["risk_score"])
         labeled.append(new_patient)
 
@@ -43,8 +42,7 @@ def add_risk_labels(patient_records: list[dict]) -> list[dict]:
 def build_triage_report(patient_records: list[dict]) -> dict:
     """Build a triage report from patient records."""
     labeled_patients = add_risk_labels(patient_records)
-    labels = [p["risk_label"] for p in labeled_patients]
-    counts = Counter(labels)
+    counts = Counter(p["risk_label"] for p in labeled_patients)
 
     return {
         "total_processed": len(patient_records),
@@ -56,6 +54,7 @@ def build_triage_report(patient_records: list[dict]) -> dict:
 
 if __name__ == "__main__":
     report = build_triage_report(patients)
+
     print("Generated Triage Report:")
     print(report)
 
@@ -63,4 +62,5 @@ if __name__ == "__main__":
     assert report["high_risk_count"] == 2
     assert report["medium_risk_count"] == 1
     assert report["low_risk_count"] == 1
+
     print("\nAll assertions passed successfully!")

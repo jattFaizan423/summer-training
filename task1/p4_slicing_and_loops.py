@@ -19,6 +19,8 @@ def slicing_examples():
     print("Last three:", last_three)
     print("Reversed:", reversed_ids)
 
+    return first_three, last_three, reversed_ids
+
 
 def loop_examples():
     """Practice range, enumerate, and zip."""

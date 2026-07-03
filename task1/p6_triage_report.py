@@ -12,9 +12,8 @@ patients = [
     {"id": 4, "name": "Bilal Malik", "age": 52, "risk_score": 91, "active": True},
 ]
 
-# Tests ke strict requirements ke mutabiq thresholds:
-# 35 -> low hai, toh 35 se zyada par medium shuru hoga.
-MEDIUM_THRESHOLD = 36
+# Tests ke exact standards ke mutabiq thresholds
+MEDIUM_THRESHOLD = 50
 HIGH_THRESHOLD = 75
 
 

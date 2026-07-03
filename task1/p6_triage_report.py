@@ -65,3 +65,4 @@ def build_triage_report(patient_records: list[dict]) -> dict:
 if __name__ == "__main__":
     report = build_triage_report(patients)
     print(report)
+

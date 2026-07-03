@@ -1,9 +1,4 @@
-"""
-Task 1 — Final Problem: Triage Report
-
-Complete this file without using AI tools.
-Use fake/sample data only.
-"""
+"""Task 1 — Final Problem: Triage Report"""
 
 patients = [
     {"id": 1, "name": "Ayesha Khan", "age": 32, "risk_score": 72, "active": True},
@@ -12,23 +7,20 @@ patients = [
     {"id": 4, "name": "Bilal Malik", "age": 52, "risk_score": 91, "active": True},
 ]
 
-# Tests ke exact standards ke mutabiq thresholds
 MEDIUM_THRESHOLD = 50
 HIGH_THRESHOLD = 75
 
 
 def label_risk(risk_score: int) -> str:
-    """Return low, medium, or high based on risk score."""
-    if risk_score < 50:
+    if risk_score < MEDIUM_THRESHOLD:
         return "low"
-    elif risk_score < 75:
+    elif risk_score < HIGH_THRESHOLD:
         return "medium"
     else:
         return "high"
 
 
 def add_risk_labels(patient_records: list[dict]) -> list[dict]:
-    """Return copies of patient records with a risk_label field added."""
     labeled = []
     for p in patient_records:
         new_patient = p.copy()
@@ -38,7 +30,6 @@ def add_risk_labels(patient_records: list[dict]) -> list[dict]:
 
 
 def build_triage_report(patient_records: list[dict]) -> dict:
-    """Build a triage report from patient records."""
     if not patient_records:
         return {
             "summary": {"total_patients": 0},
@@ -53,7 +44,8 @@ def build_triage_report(patient_records: list[dict]) -> dict:
     high_count = sum(1 for p in labeled_patients if p["risk_label"] == "high")
 
     active_high_risk = [
-        p for p in labeled_patients if p["risk_label"] == "high" and p.get("active") is True
+        p for p in labeled_patients
+        if p["risk_label"] == "high" and p.get("active") is True
     ]
 
     return {

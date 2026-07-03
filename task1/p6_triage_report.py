@@ -12,8 +12,9 @@ patients = [
     {"id": 4, "name": "Bilal Malik", "age": 52, "risk_score": 91, "active": True},
 ]
 
-# Tests ke mutabiq thresholds: Lower edge inclusive
-MEDIUM_THRESHOLD = 35
+# Tests ke strict requirements ke mutabiq thresholds:
+# 35 -> low hai, toh 35 se zyada par medium shuru hoga.
+MEDIUM_THRESHOLD = 36
 HIGH_THRESHOLD = 75
 
 
@@ -52,7 +53,6 @@ def build_triage_report(patient_records: list[dict]) -> dict:
     medium_count = sum(1 for p in labeled_patients if p["risk_label"] == "medium")
     high_count = sum(1 for p in labeled_patients if p["risk_label"] == "high")
 
-    # Sirf woh patients jo high risk hain aur active == True hain
     active_high_risk = [
         p for p in labeled_patients if p["risk_label"] == "high" and p.get("active") is True
     ]

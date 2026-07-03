@@ -19,9 +19,9 @@ HIGH_THRESHOLD = 75
 
 def label_risk(risk_score: int) -> str:
     """Return low, medium, or high based on risk score."""
-    if risk_score < 40:
+    if risk_score < 50:
         return "low"
-    elif risk_score < 80:
+    elif risk_score < 75:
         return "medium"
     else:
         return "high"

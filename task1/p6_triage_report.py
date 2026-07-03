@@ -10,8 +10,9 @@ patients = [
 MEDIUM_THRESHOLD = 50
 HIGH_THRESHOLD = 75
 
+
 def label_risk(risk_score: int) -> str:
-    # Hamesha bade number se check shuru karein aur >= lagayein
+    """Calculate and return the risk label based on the given score."""
     if risk_score >= HIGH_THRESHOLD:
         return "high"
     elif risk_score >= MEDIUM_THRESHOLD:
@@ -21,6 +22,7 @@ def label_risk(risk_score: int) -> str:
 
 
 def add_risk_labels(patient_records: list[dict]) -> list[dict]:
+    """Append risk labels to each patient record in the list."""
     labeled = []
     for p in patient_records:
         new_patient = p.copy()
@@ -30,6 +32,7 @@ def add_risk_labels(patient_records: list[dict]) -> list[dict]:
 
 
 def build_triage_report(patient_records: list[dict]) -> dict:
+    """Generate a comprehensive triage report from the patient records."""
     if not patient_records:
         return {
             "summary": {"total_patients": 0},

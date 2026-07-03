@@ -16,7 +16,7 @@ def calculate_bmi(weight_kg: float, height_m: float) -> float:
     """Calculate BMI."""
     if height_m == 0:
         return 0.0
-    return weight_kg / (height_m ** 2)
+    return weight_kg / (height_m**2)
 
 
 def classify_bmi(bmi: float) -> str:

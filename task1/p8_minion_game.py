@@ -11,9 +11,9 @@ def minion_game(word: str) -> str:
 
     for i in range(n):
         if word[i] in VOWELS:
-            kevin_score += (n - i)
+            kevin_score += n - i
         else:
-            stuart_score += (n - i)
+            stuart_score += n - i
 
     if kevin_score > stuart_score:
         return f"Kevin {kevin_score}"

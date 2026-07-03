@@ -19,12 +19,12 @@ HIGH_THRESHOLD = 75
 
 def label_risk(risk_score: int) -> str:
     """Return low, medium, or high based on risk score."""
-    if risk_score >= HIGH_THRESHOLD:
-        return "high"
-    elif risk_score >= MEDIUM_THRESHOLD:
+    if risk_score < 40:
+        return "low"
+    elif risk_score < 80:
         return "medium"
     else:
-        return "low"
+        return "high"
 
 
 def add_risk_labels(patient_records: list[dict]) -> list[dict]:

@@ -14,18 +14,21 @@ patients = [
 
 def calculate_bmi(weight_kg: float, height_m: float) -> float:
     """Calculate BMI."""
-    return round(weight_kg / (height_m**2), 2)
+    if height_m == 0:
+        return 0.0
+    return weight_kg / (height_m ** 2)
 
 
 def classify_bmi(bmi: float) -> str:
     """Return BMI category."""
     if bmi < 18.5:
-        return "Underweight"
-    if bmi < 25.0:
-        return "Normal"
-    if bmi < 30.0:
-        return "Overweight"
-    return "Obese"
+        return "underweight"
+    elif bmi < 25:
+        return "normal"
+    elif bmi < 30:
+        return "overweight"
+    else:
+        return "obese"
 
 
 def format_name(name: str) -> str:
@@ -40,20 +43,26 @@ def get_active_patients(patient_records: list[dict]) -> list[dict]:
 
 def sort_patients_by_weight(patient_records: list[dict]) -> list[dict]:
     """Return patients sorted by weight using a lambda."""
-    return sorted(patient_records, key=lambda x: x["weight_kg"])
+    return sorted(patient_records, key=lambda p: p["weight_kg"])
 
 
 if __name__ == "__main__":
-    print("--- Name Formatting ---")
-    print(format_name(patients[0]["name"]))
-    print(format_name(patients[1]["name"]))
+    print("Patient BMI Report")
+    print("-------------------")
 
-    print("\n--- BMI Calculation & Classification ---")
-    print("Ayesha BMI Category:", classify_bmi(calculate_bmi(68, 1.65)))
-    print("Omar BMI Category:", classify_bmi(calculate_bmi(82, 1.78)))
+    for p in patients:
+        bmi = calculate_bmi(p["weight_kg"], p["height_m"])
+        category = classify_bmi(bmi)
+        name = format_name(p["name"])
 
-    print("\n--- Active Patients ---")
-    print(get_active_patients(patients))
+        print(f"{name}: BMI={bmi:.2f} ({category})")
 
-    print("\n--- Sorted Patients By Weight ---")
-    print(sort_patients_by_weight(patients))
+    print("\nActive Patients:")
+    active = get_active_patients(patients)
+    for p in active:
+        print("-", format_name(p["name"]))
+
+    print("\nPatients Sorted by Weight:")
+    sorted_patients = sort_patients_by_weight(patients)
+    for p in sorted_patients:
+        print(f"{format_name(p['name'])} - {p['weight_kg']} kg")

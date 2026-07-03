@@ -24,9 +24,10 @@ patients = {
 def get_patient_city(patient_id):
     """Return the city for a given patient ID."""
     patient = patients.get(patient_id)
-    if patient:
-        return patient.get("contact", {}).get("city")
-    return None
+    if not patient:
+        return None
+
+    return patient.get("contact", {}).get("city")
 
 
 def update_patient_condition(patient_id, new_condition):
@@ -39,27 +40,27 @@ def update_patient_condition(patient_id, new_condition):
 
 def build_patient_summary():
     """Build and return a summary dictionary."""
-    total_patients = len(patients)
+    total = len(patients)
 
-    if total_patients == 0:
-        return {"total_patients": 0, "average_age": 0}
+    avg_age = 0
+    if total > 0:
+        avg_age = sum(p["age"] for p in patients.values()) / total
 
-    total_age = sum(info["age"] for info in patients.values())
-    avg_age = total_age / total_patients
+    conditions = {p["condition"] for p in patients.values()}
 
     return {
-        "total_patients": total_patients,
-        "average_age": round(avg_age, 1),
+        "total_patients": total,
+        "average_age": avg_age,
+        "unique_conditions": sorted(conditions),
     }
 
 
 if __name__ == "__main__":
-    city = get_patient_city(1)
-    print(f"Patient 1 City: {city}")
+    print("City of patient 1:", get_patient_city(1))
+    print("City of patient 3 (not exist):", get_patient_city(3))
 
-    print("\nUpdating Patient 2 condition")
-    success = update_patient_condition(2, "flu")
-    print(f"Updated Data for Patient 2: {patients[2]}")
+    print("\nUpdating condition of patient 1...")
+    update_patient_condition(1, "cardiac")
 
-    print("\n--- Summary Report ---")
+    print("\nPatient Summary:")
     print(build_patient_summary())

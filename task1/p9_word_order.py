@@ -1,25 +1,22 @@
-"""
-Task 1 — Problem 9 (Medium): Word Order
-
-HackerRank: https://www.hackerrank.com/challenges/word-order/problem
-
-Adapted as a function so it can be tested automatically.
-"""
+"""Task 1 — Problem 9 (Medium): Word Order"""
 
 sample_words = ["bcdef", "abcdefg", "bcde", "bcdef"]
 
 
 def word_order(words: list[str]) -> tuple[int, list[int]]:
-    """Count occurrences of words and return unique count along with frequencies."""
-    word_count = {}
+    """Return the count of distinct words and their frequencies in order."""
+    counts_dict = {}
 
     for word in words:
-        if word in word_count:
-            word_count[word] += 1
+        if word in counts_dict:
+            counts_dict[word] += 1
         else:
-            word_count[word] = 1
+            counts_dict[word] = 1
 
-    return len(word_count), list(word_count.values())
+    distinct_count = len(counts_dict)
+    counts = list(counts_dict.values())
+
+    return distinct_count, counts
 
 
 if __name__ == "__main__":

@@ -3,9 +3,6 @@ Task 1 — Final Problem: Triage Report
 
 Complete this file without using AI tools.
 Use fake/sample data only.
-
-Tip: collections.Counter can make counting by risk label easier, but a
-plain dictionary works too — import it yourself if you want to use it.
 """
 
 from collections import Counter
@@ -33,7 +30,7 @@ def add_risk_labels(patient_records: list[dict]) -> list[dict]:
     labeled = []
 
     for p in patient_records:
-        new_patient = p.copy()
+        new_patient = p.copy()  # do NOT modify original
         new_patient["risk_label"] = label_risk(p["risk_score"])
         labeled.append(new_patient)
 
@@ -43,6 +40,7 @@ def add_risk_labels(patient_records: list[dict]) -> list[dict]:
 def build_triage_report(patient_records: list[dict]) -> dict:
     """Build a triage report from patient records."""
     labeled_patients = add_risk_labels(patient_records)
+
     counts = Counter(p["risk_label"] for p in labeled_patients)
 
     return {
@@ -55,13 +53,12 @@ def build_triage_report(patient_records: list[dict]) -> dict:
 
 if __name__ == "__main__":
     report = build_triage_report(patients)
-
-    print("Generated Triage Report:")
     print(report)
 
+    # Assertions (important for tests)
     assert report["total_processed"] == 4
     assert report["high_risk_count"] == 2
     assert report["medium_risk_count"] == 1
     assert report["low_risk_count"] == 1
 
-    print("\nAll assertions passed successfully!")
+    print("All assertions passed!")

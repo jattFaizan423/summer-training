@@ -1,4 +1,4 @@
-"""Task 1 — Final Problem: Triage Report"""
+"""Task 1 — Final Problem: Triage Report."""
 
 patients = [
     {"id": 1, "name": "Ayesha Khan", "age": 32, "risk_score": 72, "active": True},

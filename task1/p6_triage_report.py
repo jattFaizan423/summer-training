@@ -10,14 +10,14 @@ patients = [
 MEDIUM_THRESHOLD = 50
 HIGH_THRESHOLD = 75
 
-
 def label_risk(risk_score: int) -> str:
-    if risk_score < MEDIUM_THRESHOLD:
-        return "low"
-    elif risk_score < HIGH_THRESHOLD:
+    # Hamesha bade number se check shuru karein aur >= lagayein
+    if risk_score >= HIGH_THRESHOLD:
+        return "high"
+    elif risk_score >= MEDIUM_THRESHOLD:
         return "medium"
     else:
-        return "high"
+        return "low"
 
 
 def add_risk_labels(patient_records: list[dict]) -> list[dict]:

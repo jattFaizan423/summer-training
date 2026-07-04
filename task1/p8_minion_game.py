@@ -25,8 +25,22 @@ def minion_game(word: str) -> str:
 
     Example: "BANANA" -> "Stuart 12".
     """
-    # TODO: Add up each player's score, then return the formatted result.
-    pass
+    length = len(word)
+    kevin_score = 0
+    stuart_score = 0
+
+    for index, letter in enumerate(word):
+        points = length - index
+        if letter in VOWELS:
+            kevin_score += points
+        else:
+            stuart_score += points
+
+    if stuart_score > kevin_score:
+        return f"Stuart {stuart_score}"
+    if kevin_score > stuart_score:
+        return f"Kevin {kevin_score}"
+    return "Draw"
 
 
 if __name__ == "__main__":

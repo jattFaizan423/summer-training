@@ -23,22 +23,44 @@ patients = {
 
 def get_patient_city(patient_id):
     """Return the city for a given patient ID."""
-    # TODO: Safely return the city.
-    pass
+    patient = patients.get(patient_id)
+    if not patient:
+        return None
+
+    return patient.get("contact", {}).get("city")
 
 
 def update_patient_condition(patient_id, new_condition):
     """Update a patient's condition."""
-    # TODO: Update the condition for the patient.
-    pass
+    if patient_id in patients:
+        patients[patient_id]["condition"] = new_condition
+        return True
+    return False
 
 
 def build_patient_summary():
     """Build and return a summary dictionary."""
-    # TODO: Return useful summary information.
-    pass
+    total = len(patients)
+
+    avg_age = 0
+    if total > 0:
+        avg_age = sum(p["age"] for p in patients.values()) / total
+
+    conditions = {p["condition"] for p in patients.values()}
+
+    return {
+        "total_patients": total,
+        "average_age": avg_age,
+        "unique_conditions": sorted(conditions),
+    }
 
 
 if __name__ == "__main__":
-    # TODO: Call your functions and print results.
-    pass
+    print("City of patient 1:", get_patient_city(1))
+    print("City of patient 3 (not exist):", get_patient_city(3))
+
+    print("\nUpdating condition of patient 1...")
+    update_patient_condition(1, "cardiac")
+
+    print("\nPatient Summary:")
+    print(build_patient_summary())
